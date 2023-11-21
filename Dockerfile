@@ -17,9 +17,6 @@ ENV JDK_RPM_FILE jdk-7u71-linux-x64.rpm
 #定义openJdk源码的文件名
 ENV OPENJDK_SRC_ZIP openjdk-8-src-b132-03_mar_2014.zip
 
-#定义解压缩后的文件名
-ENV OPENJDK_SRC_DIR openjdk
-
 #yum更新
 RUN yum -y update
 
@@ -38,32 +35,8 @@ RUN cat $WORK_PATH/jdkrpm-* > $WORK_PATH/$JDK_RPM_FILE
 #本地安装jdk1.7
 RUN yum -y localinstall $WORK_PATH/$JDK_RPM_FILE
 
-#把分割过的openJdk8的源码压缩包复制到工作目录
-COPY ./openjdksrc-* $WORK_PATH/
-
-#用本地分割过的文件恢复原有的openJdk8的源码压缩包
-RUN cat $WORK_PATH/openjdksrc-* > $WORK_PATH/$OPENJDK_SRC_ZIP
-
-#解压缩源码
-RUN unzip $WORK_PATH/$OPENJDK_SRC_ZIP -d $WORK_PATH
-
-#复制启动编译的shell
-COPY  ./start_make.sh $WORK_PATH/$OPENJDK_SRC_DIR/
-
-#给执行文件增加可执行权限:configure文件
-RUN chmod a+x $WORK_PATH/$OPENJDK_SRC_DIR/configure
-
-#给执行文件增加可执行权限:启动编译文件
-RUN chmod a+x $WORK_PATH/$OPENJDK_SRC_DIR/start_make.sh
-
 #删除分割文件
 RUN rm $WORK_PATH/jdkrpm-*
 
-#删除分割文件
-RUN rm $WORK_PATH/openjdksrc-*
-
 #删除jdk安装包文件
 RUN rm $WORK_PATH/$JDK_RPM_FILE
-
-#删除openJdk源码压缩文件
-RUN rm $WORK_PATH/$OPENJDK_SRC_ZIP
