@@ -30,7 +30,7 @@ Build and compile openjdk8 src at centos7
 * `docker run --name=jdk002 --security-opt seccomp=unconfined -v  /path to/openjdk:/var/shared/jdk8u  -idt bolingcavalryopenjdk:0.0.2`
   * `docker exec -it jdk002 /bin/bash`
   * `cd /var/shared/jdk8u`
-  * `chmod a+x configure && ./configure --with-debug-level=slowdebug`
+  * `chmod a+x configure && ./configure --with-debug-level=slowdebug --with-native-debug-symbols=internal --enable-debug-symbols`
   * `make all ZIP_DEBUGINFO_FILES=0 ENABLE_FULL_DEBUG_SYMBOLS=1 DISABLE_HOTSPOT_OS_VERSION_CHECK=OK CONF=linux-x86_64-normal-server-slowdebug`
   * 提示缺少的可以通过**yum install xx**安装即可
   * 验证：`cd build/linux-x86_64-normal-server-release/jdk/bin && ./java -version`
