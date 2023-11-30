@@ -39,13 +39,15 @@ Build and compile openjdk8 src at centos7
 
 <br/>
 
-### 2.2 容器内debug
+### 2.2 本地debug
 
  `gdb --args ./java -version`
 
+但是gdb调试在打断点时比如**xxx.cpp:method**时，会提示：**No source file named xxx.cpp**。有几篇文章探讨这个问题，但是没有很好的解决方案[^1] [^2] [^3]。可以改用**lldb**调试，正常断点。
+
 <br/>
 
-### 2.3 本地远程debug容器
+### 2.3 vscode远程debug
 
 **容器：**
 
@@ -108,3 +110,10 @@ Build and compile openjdk8 src at centos7
 [MacOS 编译 openjdk8 并导入 Clion 调试](https://www.cnblogs.com/dwtfukgv/p/14727290.html)
 
 [搭建 JVM(HotSpot) 源码调试环境（OpenJDK8） ](https://www.cnblogs.com/jhxxb/p/11094578.html)
+
+**gdb breakpoint issue**:
+
+[^1]: [Could not step in cpp file when debug Openjdk8 hotspot in mac](https://stackoverflow.com/questions/45678886/could-not-step-in-cpp-file-when-debug-openjdk8-hotspot-in-mac)
+[^2]:  [[讨论] HotSpot gdb调试, No source file named ...](https://hllvm-group.iteye.com/group/topic/39731)
+[^3]: [GDB: Debug native part of java application (C/C++ libraries and JDK)](https://medium.com/@pirogov.alexey/gdb-debug-native-part-of-java-application-c-c-libraries-and-jdk-6593af3b4f3f)
+
