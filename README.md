@@ -43,7 +43,18 @@ Build and compile openjdk8 src at centos7
 
  `gdb --args ./java -version`
 
-但是gdb调试在打断点时比如**xxx.cpp:method**时，会提示：**No source file named xxx.cpp**。有几篇文章探讨这个问题，但是没有很好的解决方案[^1] [^2] [^3]。可以改用**lldb**调试，正常断点。
+但是gdb调试在打断点时比如**xxx.cpp:method**时，会提示：**No source file named xxx.cpp**。有几篇文章探讨这个问题，但是没有很好的解决方案[^1] [^2] [^3]。解决方法有二：
+
+* 可以改用**lldb**调试，绕过去
+
+* 进入gdb之后，执行：`directory /var/shared/jdk8u`明确告诉gdb源码路径。之后再打断点`break classFileParser.cpp:3735`，会出现类似：
+
+  > No source file named classFileParser.cpp.
+  > Make breakpoint pending on future shared library load? (y or [n])
+  >
+  > 选择: Y 
+  >
+  > **Breakpoint 1 (classFileParser.cpp:3735) pending.** // 表示未来会在此处断点
 
 <br/>
 
