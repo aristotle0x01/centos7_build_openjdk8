@@ -100,6 +100,29 @@ Build and compile openjdk8 src at centos7
 
 <br/>
 
+### 2.4 hsdis编译
+
+```shell
+cd hotspot/src/share/tools/hsdis
+wget http://ftp.heanet.ie/mirrors/ftp.gnu.org/gnu/binutils/binutils-2.29.tar.gz
+tar -xzf binutils-2.29.tar.gz
+sed -ri 's/development=.*/development=false/' ./binutils-2.29/bfd/development.sh # set development to false
+make BINUTILS=binutils-2.29 ARCH=amd64
+
+// 成功后拷贝到相关目录
+sudo cp build/linux-amd64/hsdis-amd64.so ...
+./linux-x86_64-normal-server-slowdebug/jdk/lib/amd64/server/hsdis-amd64.so
+./linux-x86_64-normal-server-slowdebug/jdk/lib/amd64/hsdis-amd64.so
+./linux-x86_64-normal-server-slowdebug/hotspot/dist/jre/lib/amd64/server/hsdis-amd64.so
+./linux-x86_64-normal-server-slowdebug/hotspot/dist/jre/lib/amd64/hsdis-amd64.so
+```
+
+ [Build hsdis for JDK 1.8 on Ubuntu](http://neverfear.org/blog/view/162/Build_hsdis_for_JDK_1_8_on_Ubuntu)
+
+[Developers disassemble! Use Java and hsdis to see it all](https://blogs.oracle.com/javamagazine/post/java-hotspot-hsdis-disassembler)
+
+<br/>
+
 ## 3.ref
 
 [**在docker上编译openjdk8**](https://blog.51cto.com/zq2599/5193163)
