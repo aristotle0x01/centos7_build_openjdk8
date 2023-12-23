@@ -123,6 +123,7 @@ sudo cp build/linux-amd64/hsdis-amd64.so ...
 ](https://bugs.openjdk.org/browse/JDK-8191006) 按照**CUSTOMER SUBMITTED WORKAROUND :**部分修改hsdis.c代码即可
 
  [Build hsdis for JDK 1.8 on Ubuntu](http://neverfear.org/blog/view/162/Build_hsdis_for_JDK_1_8_on_Ubuntu)
+
 [Developers disassemble! Use Java and hsdis to see it all](https://blogs.oracle.com/javamagazine/post/java-hotspot-hsdis-disassembler)
 
 <br/>
@@ -130,14 +131,23 @@ sudo cp build/linux-amd64/hsdis-amd64.so ...
 ## 3.ref
 
 [**在docker上编译openjdk8**](https://blog.51cto.com/zq2599/5193163)
+
 [**修改，编译，GDB调试openjdk8源码(docker环境下)**](https://blog.51cto.com/zq2599/5195647)
+
 [Debugging C/C++ Programs Remotely Using Visual Studio Code and gdbserver](https://medium.com/@spe_/debugging-c-c-programs-remotely-using-visual-studio-code-and-gdbserver-559d3434fb78)
+
 [How to Remote Debugging with Visual Studio Code](https://nnfw.readthedocs.io/en/stable/howto/how-to-remote-debugging-with-visual-studio-code.html)
+
 [Configure C/C++ debugging](https://code.visualstudio.com/docs/cpp/launch-json-reference#_sourcefilemap)
+
 [VS Code Remote Development](https://code.visualstudio.com/docs/remote/remote-overview)
+
 [Pipe transport](https://code.visualstudio.com/docs/cpp/pipe-transport)
+
 [Remote Development using SSH](https://code.visualstudio.com/docs/remote/ssh)
+
 [MacOS 编译 openjdk8 并导入 Clion 调试](https://www.cnblogs.com/dwtfukgv/p/14727290.html)
+
 [搭建 JVM(HotSpot) 源码调试环境（OpenJDK8） ](https://www.cnblogs.com/jhxxb/p/11094578.html)
 
 **gdb breakpoint issue**:
