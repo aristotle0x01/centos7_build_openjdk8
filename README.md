@@ -68,6 +68,8 @@ Build and compile openjdk8 src at centos7
 
 **本地：**
 
+* 安装gdb
+
 * vscode安装插件:  **Native Debug** (WebFreak)
 
   配置文件**launch.json**如下：
@@ -129,7 +131,7 @@ sudo cp build/linux-amd64/hsdis-amd64.so ...
 
 <br/>
 
-## 3.ref
+## 3.reference
 
 [**在docker上编译openjdk8**](https://blog.51cto.com/zq2599/5193163)
 
