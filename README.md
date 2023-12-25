@@ -63,8 +63,12 @@ Build and compile openjdk8 src at centos7
 **容器：**
 
 * `docker run --name=jdk002 --security-opt seccomp=unconfined -p 1234:1234 -v  /path to/jdk8u:/var/shared/jdk8u  -idt bolingcavalryopenjdk:0.0.2_ok`
+
 * `yum install gdb-gdbserver`
+
 * `gdbserver  :1234 /var/shared/jdk8u/build/linux-x86_64-normal-server-slowdebug/jdk/bin/java -version`
+
+  注意**java**完整路径，影响断点同步
 
 **本地：**
 
@@ -86,19 +90,20 @@ Build and compile openjdk8 src at centos7
               "target": "localhost:1234",
               "remote": true,
               "printCalls": true,
-              "engineLogging": true,
               "cwd": "${workspaceRoot}",
               "valuesFormatting": "parseText",
           }
       ]
   }
   ```
-
+  
 * vscode与容器源代码映射：本地建立软连接，这样本地和容器都有了**/var/shared/jdk8u**路径，即可启动本地单步调试
 
-  `ln -s /path to/jdk8u /var/shared`。当然这是一种取巧的方式，也可以通过**sourceFileMap**解决。
+  `ln -s /path to/jdk8u /var/shared`。当然这是一种取巧的方式，也可以通过**sourceFileMap**解决
 
 * 本地vscode:  `Run / Start Debugging`
+
+* 打断点无效问题，无论在什么路径测试java程序，注意**gdbserver**使用编译后完整路径**/var/shared/jdk8u/build/linux-x86_64-normal-server-slowdebug/jdk/bin/java**，仅仅**./java**不行
 
 <br/>
 
