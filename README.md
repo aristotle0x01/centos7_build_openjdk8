@@ -1,6 +1,6 @@
 ## 1.原作者readme
 
-###centos7_build_openjdk8###
+**centos7_build_openjdk8**
 Build and compile openjdk8 src at centos7
 
 1. <code>docker build -t bolingcavalryopenjdk:0.0.1 .</code>
@@ -46,6 +46,8 @@ Build and compile openjdk8 src at centos7
 但是gdb调试在打断点时比如**xxx.cpp:method**时，会提示：**No source file named xxx.cpp**。有几篇文章探讨这个问题，但是没有很好的解决方案[^1] [^2] [^3]。解决方法有二：
 
 * 可以改用**lldb**调试，绕过去
+
+* 从openjdk-8u分支切换到8b分支则无此问题(Make breakpoint pending on future即可)
 
 * 进入gdb之后，执行：`directory /var/shared/jdk8u`明确告诉gdb源码路径。之后再打断点`break classFileParser.cpp:3735`，会出现类似：
 
@@ -97,13 +99,13 @@ Build and compile openjdk8 src at centos7
   }
   ```
   
-* vscode与容器源代码映射：本地建立软连接，这样本地和容器都有了**/var/shared/jdk8u**路径，即可启动本地单步调试
+* vscode与容器源代码映射：本地建立软连接，这样本地和容器都有了`/var/shared/jdk8u`路径，即可启动本地单步调试
 
   `ln -s /path to/jdk8u /var/shared`。当然这是一种取巧的方式，也可以通过**sourceFileMap**解决
 
 * 本地vscode:  `Run / Start Debugging`
 
-* 打断点无效问题，无论在什么路径测试java程序，注意**gdbserver**使用编译后完整路径**/var/shared/jdk8u/build/linux-x86_64-normal-server-slowdebug/jdk/bin/java**，仅仅**./java**不行
+* 打断点无效问题，无论在什么路径测试java程序，注意**gdbserver**使用编译后完整路径`/var/shared/jdk8u/build/linux-x86_64-normal-server-slowdebug/jdk/bin/java`，仅仅`./java`不行
 
 <br/>
 
